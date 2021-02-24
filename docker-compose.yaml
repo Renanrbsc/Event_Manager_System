@@ -5,7 +5,7 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_DATABASE: 'db'
+      MYSQL_DATABASE: 'managerevent_db'
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: '12345'
       MYSQL_ROOT_PASSWORD: '12345'
