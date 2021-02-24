@@ -1,0 +1,4 @@
+2721,Sala de Lazer
+1470,Cantinho do Cafe
+8879,Cantinho do Cafe
+1365,Cafezinho
