@@ -1,22 +1,25 @@
-from app.domains.student.actions import StudentAction
+from app.domains.student.action_mysql import StudentActionMySQL
 
 
 class StudentView:
 
+    def __init__(self):
+        self.action = StudentActionMySQL()
+
     def post(self):
         name = input("Digite o nome do estudante:")
         lastname = input("Digite o sobrenome do estudante:")
-        student = StudentAction().create({"name": name,
-                                          "lastname": lastname})
+        student = self.action.create({"name": name,
+                                      "lastname": lastname})
         return student
 
     def get_id(self):
         id = int(input("Digite o id(0,9999) do estudante:"))
-        student = StudentAction().get(id)
+        student = self.action.get(id)
         return student
 
     def get_all(self):
-        students = StudentAction().get()
+        students = self.action.get()
         return students
 
     def put(self):
