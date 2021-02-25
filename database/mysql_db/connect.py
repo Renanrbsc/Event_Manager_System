@@ -25,7 +25,7 @@ class DatabaseMySQL:
         self.cursor.execute(self.process.show_tables())
         return self.cursor.fetchall()
 
-    def create_data(self, table: str, data: dict):
+    def create_data(self, table: str, data: dict) -> None:
         columns_list = [column for column in data.keys()]
         values_list = [data[key] for key in data]
         script = self.process.insert_into(table=table, columns=columns_list)
