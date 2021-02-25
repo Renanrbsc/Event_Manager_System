@@ -19,10 +19,30 @@ class DatabaseMySQL:
                                                   db="managerevent_db",
                                                   charset="utf8")
         self.cursor = self.connection.cursor()
+        return self.cursor
 
     def view_tables(self) -> list:
         self.cursor.execute(self.process.show_tables())
         return self.cursor.fetchall()
+
+    def create_data(self, table: str, data: dict):
+        columns_list = [column for column in data.keys()]
+        values_list = [data[key] for key in data]
+        script = self.process.insert_into(table=table, columns=columns_list)
+
+        self.cursor.execute(script, values_list)
+        self.connection.commit()
+        print(self.cursor.rowcount, "Record inserted.")
+
+    def get_id(self, table: str, id: str):
+        self.cursor.execute(self.process.select_id(table=table), (id,))
+        record = self.cursor.fetchall()
+        return record
+
+    def get_all(self, table: str):
+        self.cursor.execute(self.process.select_all(table=table))
+        records = self.cursor.fetchall()
+        return records
 
     def start_tables(self) -> None:
         tables_db = self.view_tables()
