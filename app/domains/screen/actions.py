@@ -4,9 +4,11 @@ class ScreenAction:
         if op == "1":
             print(view.post())
         elif op == "2":
-            print(view.get_id())
+            for record in view.get_id():
+                print(record)
         elif op == "3":
-            print(view.get_all())
+            for record in view.get_all():
+                print(record)
 
     def exit(self, op: str):
         if op == "exit":
