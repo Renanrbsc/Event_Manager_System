@@ -32,5 +32,10 @@ class Student:
     def getName(self) -> str:
         return self._name
 
+    def serialize(self) -> dict:
+        return {"id": self.getId(),
+                "name": self.getName(),
+                "lastname": self.getLastname()}
+
     def __str__(self) -> str:
         return f"{self.getId()},{self.getName()},{self.getLastname()}\n"
