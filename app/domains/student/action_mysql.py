@@ -12,7 +12,6 @@ class StudentActionMySQL:
     def create(self, data: dict):
         student = Student(name=data["name"],
                           lastname=data["lastname"])
-        print(self.db.get_id(table=Tables.names[0], id=student.getId()))
         if not self.db.get_id(table=Tables.names[0], id=student.getId()):
             self.db.create_data(table=Tables.names[0], data=student.serialize())
             return student.serialize()
