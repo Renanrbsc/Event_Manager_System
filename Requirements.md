@@ -4,6 +4,8 @@ $ pip install pipenv
 
 $ pipenv install
 
+$ pipenv shell
+
 # -- Container MySQL Docker
 
 requires program: Docker
