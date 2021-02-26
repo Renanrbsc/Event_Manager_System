@@ -1,4 +1,4 @@
-from app.domains.event_room.actions import EventRoomAction
+from app.domains.event_room.action_mysql import EventRoomActionMySQL
 
 
 class EventRoomView:
@@ -6,16 +6,16 @@ class EventRoomView:
     def post(self):
         name = input("Digite o nome da sala de eventos:")
         capacity = int(input("Digite a capacidade maxima da sala de eventos:"))
-        eventRoom = EventRoomAction().create({"name": name, "capacity": capacity})
+        eventRoom = EventRoomActionMySQL().create({"name": name, "capacity": capacity})
         return eventRoom
 
     def get_id(self):
         id = int(input("Digite o id(0,9999) da sala de eventos:"))
-        eventRoom = EventRoomAction().get(id)
+        eventRoom = EventRoomActionMySQL().get(id)
         return eventRoom
 
     def get_all(self):
-        eventRooms = EventRoomAction().get()
+        eventRooms = EventRoomActionMySQL().get()
         return eventRooms
 
     def put(self):

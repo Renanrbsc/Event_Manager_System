@@ -1,20 +1,20 @@
-from app.domains.coffee_space.actions import CoffeeSpaceAction
+from app.domains.coffee_space.action_mysql import CoffeeSpaceActionMySQL
 
 
 class CoffeeSpaceView:
 
     def post(self):
         name = input("Digite o nome do espaço de café:")
-        coffeeSpace = CoffeeSpaceAction().create({"name": name})
+        coffeeSpace = CoffeeSpaceActionMySQL().create({"name": name})
         return coffeeSpace
 
     def get_id(self):
         id = int(input("Digite o id(0,9999) do espaço de café:"))
-        coffeeSpace = CoffeeSpaceAction().get(id)
+        coffeeSpace = CoffeeSpaceActionMySQL().get(id)
         return coffeeSpace
 
     def get_all(self):
-        coffeeSpaces = CoffeeSpaceAction().get()
+        coffeeSpaces = CoffeeSpaceActionMySQL().get()
         return coffeeSpaces
 
     def put(self):
