@@ -1,10 +1,13 @@
 # -- Installing project dependencies
 
-pip install pipenv
+$ pip install pipenv
 
-pipenv install
+$ pipenv install
 
 # -- Container MySQL Docker
 
 requires program: Docker
+
 optional program: DBeaver
+
+$ docker-compose up -d
