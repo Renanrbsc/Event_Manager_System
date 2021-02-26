@@ -2,7 +2,7 @@ from app.domains.event_room.models import EventRoom
 from database.text_db.process import read_id, read_all, append_model
 
 
-class EventRoomAction:
+class EventRoomActionText:
 
     def create(self, data: dict):
         eventRoom = EventRoom(name=data["name"], capacity=data["capacity"])

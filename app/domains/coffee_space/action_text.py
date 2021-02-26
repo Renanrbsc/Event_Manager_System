@@ -2,7 +2,7 @@ from app.domains.coffee_space.models import CoffeeSpace
 from database.text_db.process import read_all, read_id, append_model
 
 
-class CoffeeSpaceAction:
+class CoffeeSpaceActionText:
 
     def create(self, data: dict):
         coffeeSpace = CoffeeSpace(name=data["name"])
