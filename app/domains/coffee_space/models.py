@@ -24,5 +24,9 @@ class CoffeeSpace:
     def getName(self) -> str:
         return self._name
 
+    def serialize(self) -> dict:
+        return {"id": self.getId(),
+                "name": self.getName()}
+
     def __str__(self) -> str:
         return f"{self.getId()},{self.getName()}\n"

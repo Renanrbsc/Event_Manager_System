@@ -35,5 +35,10 @@ class EventRoom:
     def getCapacity(self) -> str:
         return self._capacity
 
+    def serialize(self) -> dict:
+        return {"id": self.getId(),
+                "name": self.getName(),
+                "capacity": self.getCapacity()}
+
     def __str__(self) -> str:
         return f"{self.getId()},{self.getName()},{self.getCapacity()}\n"
