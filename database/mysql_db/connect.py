@@ -44,6 +44,16 @@ class DatabaseMySQL:
         records = self.cursor.fetchall()
         return records
 
+    def put_id(self, table: str, data: dict) -> None:
+        columns_list = [column for column in data.keys()]
+        values_list = [data[key] for key in data]
+        value_id = values_list.pop(0)
+        script = self.process.update_id(table=table, columns=columns_list)
+        print(script, values_list.append(value_id))
+        self.cursor.execute(script, values_list.append(value_id))
+        self.connection.commit()
+        print(self.cursor.rowcount, "Record inserted.")
+
     def start_tables(self) -> None:
         tables_db = self.view_tables()
 
