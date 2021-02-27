@@ -5,7 +5,8 @@ class CoffeeSpaceView:
 
     def post(self):
         name = input("Digite o nome do espaço de café:")
-        coffeeSpace = CoffeeSpaceActionMySQL().create({"name": name})
+        capacity = int(input("Digite a capacidade maxima do espaço de café:"))
+        coffeeSpace = CoffeeSpaceActionMySQL().create({"name": name, "capacity": capacity})
         return coffeeSpace
 
     def get_id(self):

@@ -5,7 +5,7 @@ from database.text_db.process import read_all, read_id, append_model
 class CoffeeSpaceActionText:
 
     def create(self, data: dict):
-        coffeeSpace = CoffeeSpace(name=data["name"])
+        coffeeSpace = CoffeeSpace(name=data["name"], capacity=data["capacity"])
 
         if not read_id(local_name="coffee_space", model=coffeeSpace):
             append_model(local_name="coffee_space", model=coffeeSpace)

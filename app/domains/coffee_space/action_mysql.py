@@ -10,7 +10,7 @@ class CoffeeSpaceActionMySQL:
         self.db.start_connector()
 
     def create(self, data: dict):
-        coffeeSpace = CoffeeSpace(name=data["name"])
+        coffeeSpace = CoffeeSpace(name=data["name"], capacity=data["capacity"])
         if not self.db.get_id(table=Tables.names[2], id=coffeeSpace.getId()):
             self.db.create_data(table=Tables.names[2], data=coffeeSpace.serialize())
             return coffeeSpace.serialize()

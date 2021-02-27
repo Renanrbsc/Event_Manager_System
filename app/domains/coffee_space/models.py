@@ -4,10 +4,12 @@ from random import randint
 class CoffeeSpace:
     _id = str()
     _name = str()
+    _capacity = str()
 
-    def __init__(self, id: int = None, name: str = ""):
+    def __init__(self, id: int = None, name: str = "", capacity: int = None):
         self.setId(id)
         self.setName(name)
+        self.setCapacity(capacity)
 
     def setId(self, id: int) -> None:
         if id:
@@ -23,6 +25,15 @@ class CoffeeSpace:
 
     def getName(self) -> str:
         return self._name
+
+    def setCapacity(self, capacity: int) -> None:
+        if capacity:
+            self._capacity = '%03d' % capacity
+        else:
+            self._capacity = '%03d' % 0
+
+    def getCapacity(self) -> str:
+        return self._capacity
 
     def serialize(self) -> dict:
         return {"id": self.getId(),
