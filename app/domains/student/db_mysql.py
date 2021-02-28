@@ -11,10 +11,7 @@ class StudentMySQL(DatabaseMySQL):
         sql = f"SELECT * FROM {self.__tablename__};"
         print(sql)
         students = super().get(script=sql)
-        list_students = []
-        for student in students:
-            list_students.append(student)
-        return list_students
+        return students
 
     def get_by_id(self, id: str):
         sql = f"SELECT * FROM {self.__tablename__} WHERE id=%s;"
