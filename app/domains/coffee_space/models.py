@@ -41,4 +41,4 @@ class CoffeeSpace:
                 "capacity": self.getCapacity()}
 
     def __str__(self) -> str:
-        return f"{self.getId()},{self.getName()}\n"
+        return f"{self.getId()},{self.getName()},{self.getCapacity()}\n"
