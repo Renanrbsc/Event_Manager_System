@@ -19,6 +19,7 @@ class Tables:
         return f"CREATE TABLE {self.names[2]}(" \
                 "id varchar(4) NOT NULL," \
                 "name varchar(100) NOT NULL," \
+                "capacity varchar(3) NOT NULL," \
                 "PRIMARY KEY (id));"
 
     def show_all(self) -> str:
