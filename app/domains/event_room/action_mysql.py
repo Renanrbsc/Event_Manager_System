@@ -1,35 +1,43 @@
 from app.domains.event_room.models import EventRoom
-from database.mysql_db.connect import DatabaseMySQL
-from database.mysql_db.tables import Tables
+from app.domains.event_room.db_mysql import EventRoomMySQL
 
 
 class EventRoomActionMySQL:
 
     def __init__(self):
-        self.db = DatabaseMySQL()
-        self.db.start_connector()
+        self.db = EventRoomMySQL()
 
     def create(self, data: dict):
-        eventRoom = EventRoom(name=data["name"],
-                              capacity=data["capacity"])
-        if not self.db.get_id(table=Tables.names[1], id=eventRoom.getId()):
-            self.db.create_data(table=Tables.names[1], data=eventRoom.serialize())
-            return eventRoom.serialize()
+        event_room = EventRoom(name=data["name"],
+                               capacity=data["capacity"])
+        if not self.db.get_by_id(id=event_room.getId()):
+            row = self.db.post(data=event_room.serialize())
+            return f"{event_room.serialize()}\n{row}"
         else:
-            return f"{str(eventRoom)}" \
-                    "Unsaved record."
+            return f"{event_room.serialize()}\nRegistro não salvo."
 
-    def update(self):
-        pass
+    def update_id(self, data: dict, id: int):
+        event_room = EventRoom(id=id,
+                               name=data["name"],
+                               capacity=data["capacity"])
+        if self.db.get_by_id(id=event_room.getId()):
+            row = self.db.put_id(data=event_room.serialize())
+            return f"{event_room.serialize()}\n{row}"
+        else:
+            return f"{event_room.serialize()}\nRegistro não encontrado."
 
-    def delete(self):
-        pass
+    def delete_id(self, id: int = None):
+        event_room = EventRoom(id=id)
+        if self.db.get_by_id(id=event_room.getId()):
+            return self.db.remove_id(id=event_room.getId())
+        else:
+            return f"Registro não encontrado."
 
     def get(self, id: int = None):
         if id:
-            eventRoom = EventRoom(id=id)
-            eventRooms = self.db.get_id(table=Tables.names[1], id=eventRoom.getId())
+            event_room = EventRoom(id=id)
+            event_rooms = self.db.get_by_id(id=event_room.getId())
         else:
-            eventRooms = self.db.get_all(table=Tables.names[1])
-        print(f"{len(eventRooms)} found.")
-        return eventRooms
+            event_rooms = self.db.get_all()
+        print(f"{len(event_rooms)} encontrado(s).")
+        return event_rooms
