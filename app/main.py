@@ -9,7 +9,6 @@ class MainApp:
 
     def run(self) -> None:
         db = DatabaseMySQL()
-        db.start_connector()
         db.start_tables()
 
         while True:

@@ -20,3 +20,6 @@ class Tables:
                 "id varchar(4) NOT NULL," \
                 "name varchar(100) NOT NULL," \
                 "PRIMARY KEY (id));"
+
+    def show_all(self) -> str:
+        return "SHOW TABLES"
