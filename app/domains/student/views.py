@@ -22,8 +22,15 @@ class StudentView:
         students = self.action.get()
         return students
 
-    def put(self):
-        pass
+    def put_id(self):
+        id = int(input("Digite o id(0,9999) do estudante:"))
+        name = input("Digite o novo nome do estudante:")
+        lastname = input("Digite o novo sobrenome do estudante:")
+        student = self.action.update_id({"name": name,
+                                         "lastname": lastname}, id)
+        return student
 
-    def delete(self):
-        pass
+    def delete_id(self):
+        id = int(input("Digite o id(0,9999) do estudante:"))
+        student = self.action.delete_id(id)
+        return student
